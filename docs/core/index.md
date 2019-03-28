@@ -13,16 +13,5 @@ DPL 中 UED 设计体系与前端 UI 体系的核心接口层，负责将 UED �
 为 Next 的所有 UI 组件提供全局基础样式的变量定义，包括颜色、原角、文本、边线、阴影、动画, 以及其他全局变量定义等；全局 Mixins, Functions；以及浏览器基础样式重置和全站文本样式声明。
 
 ### 约定
-所有 UI 组件必须引用 `@alifd/next-core` 作为全局默认的变量使用，且定义方式，书写规范也必须和 core 保持一致。不允许有其他全局公共变量对 `@alifd/next-core` 覆写。
+所有 UI 组件必须引用 `@alifd/next/lib/core` 作为全局默认的变量使用，且定义方式，书写规范也必须和 core 保持一致。不允许有其他全局公共变量对 `@alifd/next/lib/core` 覆写。
 
-### 使用
-
-```
-npm install @alifd/next-core --save
-```
-
-index.scss
-
-``` scss
-@import "~@alifd/next-core/lib/index-noreset.scss";
-```

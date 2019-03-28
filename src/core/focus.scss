@@ -1,0 +1,6 @@
+@import "./index-noreset.scss";
+
+.js-focus-visible .focus-visible:focus {
+    outline: $focus-global-outline-width $focus-global-outline-style $focus-global-outline-color;
+    outline-offset: $focus-global-outline-offset;
+}
