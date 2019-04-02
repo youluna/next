@@ -68,13 +68,9 @@ precss.css
 .sass-cache/
 scripts/server-remote
 __html/
-dist/
-es/
-lib/
+
 test/coverage/
 test/**/coverage/
-compiled_docs/
-demos/
 platform-docs/
 coverage/
 docs-lang/

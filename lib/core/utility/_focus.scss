@@ -1,0 +1,28 @@
+////
+/// @group focus
+/// @module focus: focus样式
+/// @type String
+/// @tag focus
+/// @category utility
+/// @family focus
+/// @varPrefix $focus-
+/// @classPrefix {prefix}-focus
+////
+
+
+/// outline color
+/// @semantic 边框颜色
+$focus-global-outline-color: $color-brand1-9 !default;
+
+/// outline style
+/// @semantic 边框样式
+$focus-global-outline-style: $line-dashed !default;
+
+/// outline width
+/// @semantic 边框宽度
+$focus-global-outline-width: $s-1 !default;
+
+/// outline offset
+/// @semantic 边框offset
+$focus-global-outline-offset: $s-zero !default;
+
