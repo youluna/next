@@ -22,12 +22,14 @@ const options = {
                 'lib/form-element.scss',
                 'lib/mask.scss',
                 'lib/popup.scss',
+                'lib/focus.scss',
             ],
             theme: {
                 main: [
                     'theme/form-element.jsx',
                     'theme/mask.jsx',
                     'theme/popup.jsx',
+                    'theme/focus.jsx',
                 ],
                 entryName: pathname => {
                     const themeName = path.basename(pathname, '.jsx');

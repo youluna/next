@@ -8,7 +8,7 @@
 
 .next-form-element.next-input,
 .next-form-element.next-select .next-input,
-.next-form-element.next-time-picker .next-input, {
+.next-form-element.next-time-picker .next-input {
     &.next-small {
         @include input-size($form-element-small-height, $input-s-padding, $form-element-small-font-size, $input-s-label-padding-left, $input-s-icon-padding-right);
         @include input-icon-size($form-element-small-icon-size);
