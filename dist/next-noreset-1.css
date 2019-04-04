@@ -1,5 +1,5 @@
 /*!
- * @alifd/next@1.14.1 (https://fusion.design)
+ * @alifd/next@1.14.0 (https://fusion.design)
  * Copyright 2018-present Alibaba Group,
  * Licensed under MIT (https://github.com/alibaba-fusion/next/blob/master/LICENSE)
  */
@@ -3088,7 +3088,8 @@
     font-size: 0; }
     .next-tag-large > .next-tag-body {
       font-size: 16px;
-      padding: 0 16px; }
+      padding: 0 16px;
+      min-width: 48px; }
     .next-tag-large.next-tag-closable > .next-tag-body {
       padding: 0 0 0 16px; }
     .next-tag-large[dir=rtl].next-tag-closable > .next-tag-body {
@@ -3112,7 +3113,8 @@
     font-size: 0; }
     .next-tag-medium > .next-tag-body {
       font-size: 14px;
-      padding: 0 12px; }
+      padding: 0 12px;
+      min-width: 40px; }
     .next-tag-medium.next-tag-closable > .next-tag-body {
       padding: 0 0 0 12px; }
     .next-tag-medium[dir=rtl].next-tag-closable > .next-tag-body {
@@ -3146,7 +3148,8 @@
     font-size: 0; }
     .next-tag-small > .next-tag-body {
       font-size: 12px;
-      padding: 0 8px; }
+      padding: 0 8px;
+      min-width: 28px; }
     .next-tag-small.next-tag-closable > .next-tag-body {
       padding: 0 0 0 8px; }
     .next-tag-small[dir=rtl].next-tag-closable > .next-tag-body {
@@ -5150,7 +5153,11 @@
     -webkit-transition: background .2s ease;
     transition: background .2s ease; }
     .next-collapse-panel-title:hover {
-      background: #EBECF0; }
+      background: #EBECF0;
+      color: #333333;
+      font-weight: normal; }
+      .next-collapse-panel-title:hover .next-collapse-panel-icon {
+        color: #333333; }
   .next-collapse-panel-content {
     overflow: hidden;
     height: 0;
@@ -5198,6 +5205,10 @@
       background: #F2F3F7; }
     .next-collapse-panel-disabled .next-collapse-panel-icon {
       color: #CCCCCC; }
+    .next-collapse-panel-disabled .next-collapse-panel-title:hover {
+      font-weight: normal; }
+      .next-collapse-panel-disabled .next-collapse-panel-title:hover .next-collapse-panel-icon {
+        color: #CCCCCC; }
     .next-collapse-panel-disabled:hover {
       color: #CCCCCC;
       background: #F2F3F7; }
@@ -12462,8 +12473,3 @@
       border-bottom-left-radius: 2px; }
     .next-search-normal.next-normal .next-search-left {
       border-color: #C4C6CF; }
-      .next-search-normal.next-normal .next-search-left .next-search-left-addon {
-        border-right: 1px solid #E6E7EB; }
-    .next-search-normal.next-normal:hover .next-search-left,
-    .next-search-normal.next-normal:hover .next-btn {
-      border-color: #A0A2AD; }

@@ -425,8 +425,8 @@
         "name": "string"
       },
       "required": false,
-      "description": "unique id to make component accessible",
-      "docblock": "unique id to make component accessible"
+      "description": "请设置 id 以保证transfer的可访问性",
+      "docblock": "请设置 id 以保证transfer的可访问性"
     }
   },
   "methods": [],

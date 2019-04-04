@@ -399,11 +399,7 @@ var Rating = (_temp = _class = function (_Component) {
                         className: prefix + 'rating-overlay',
                         style: overlayStyle
                     },
-                    React.createElement(
-                        'form',
-                        { action: '#' },
-                        overlay
-                    )
+                    overlay
                 )
             ),
             showGrade ? React.createElement(

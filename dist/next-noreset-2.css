@@ -1,9 +1,14 @@
 /*!
- * @alifd/next@1.14.1 (https://fusion.design)
+ * @alifd/next@1.14.0 (https://fusion.design)
  * Copyright 2018-present Alibaba Group,
  * Licensed under MIT (https://github.com/alibaba-fusion/next/blob/master/LICENSE)
  */
 
+      .next-search-normal.next-normal .next-search-left .next-search-left-addon {
+        border-right: 1px solid #E6E7EB; }
+    .next-search-normal.next-normal:hover .next-search-left,
+    .next-search-normal.next-normal:hover .next-btn {
+      border-color: #A0A2AD; }
     .next-search-normal.next-normal .next-search-btn {
       background: #F7F8FA;
       border-color: #C4C6CF;
@@ -2660,6 +2665,9 @@
               box-sizing: border-box; }
   .next-tabs-bar {
     outline: none; }
+    .next-tabs-bar-popup {
+      overflow-y: auto;
+      max-height: 480px; }
   .next-tabs-nav-container {
     position: relative; }
     .next-tabs-nav-container:after {
@@ -3057,44 +3065,50 @@
           -ms-transform: translateY(-50%);
               transform: translateY(-50%); }
 
-.next-tabs[dir="rtl"].next-medium .next-tabs-nav-container-scrolling {
+.next-tabs[dir='rtl'].next-medium .next-tabs-nav-container-scrolling {
   padding-left: 60px;
   padding-right: 0; }
 
-.next-tabs[dir="rtl"].next-medium .next-tabs-tab-close {
+.next-tabs[dir='rtl'].next-medium .next-tabs-tab-close {
   padding-right: 8px;
   padding-left: 0; }
 
-.next-tabs[dir="rtl"].next-small .next-tabs-nav-container-scrolling {
+.next-tabs[dir='rtl'].next-small .next-tabs-nav-container-scrolling {
   padding-left: 56px;
   padding-right: 0; }
 
-.next-tabs[dir="rtl"].next-small .next-tabs-tab-close {
+.next-tabs[dir='rtl'].next-small .next-tabs-tab-close {
   padding-right: 8px;
   padding-left: 0; }
 
-.next-tabs[dir="rtl"].next-tabs-wrapped.next-tabs-top > .next-tabs-bar .next-tabs-nav-extra {
+.next-tabs[dir='rtl'].next-tabs-wrapped.next-tabs-top > .next-tabs-bar .next-tabs-nav-extra {
   right: auto;
   left: 0; }
 
-.next-tabs[dir="rtl"].next-tabs-wrapped.next-tabs-bottom > .next-tabs-bar .next-tabs-nav-extra {
+.next-tabs[dir='rtl'].next-tabs-wrapped.next-tabs-bottom > .next-tabs-bar .next-tabs-nav-extra {
   right: auto;
   left: 0; }
 
-.next-tabs[dir="rtl"] > .next-tabs-bar .next-tabs-nav-extra {
+.next-tabs[dir='rtl'] > .next-tabs-bar .next-tabs-nav-extra {
   right: auto;
   left: 0; }
 
-.next-tabs[dir="rtl"] .next-tabs-btn-next {
+.next-tabs[dir='rtl'] .next-tabs-btn-next {
   left: 8px;
   right: auto; }
 
-.next-tabs[dir="rtl"] .next-tabs-btn-prev {
+.next-tabs[dir='rtl'] .next-tabs-btn-prev {
   left: 32px;
   right: auto; }
 
-.next-tabs[dir="rtl"] .next-tabs-btn-down {
+.next-tabs[dir='rtl'] .next-tabs-btn-down {
   left: 8px;
+  right: auto; }
+
+.next-tabs-text[dir='rtl'] > .next-tabs-bar .next-tabs-tab:not(:last-child):after {
+  content: ' ';
+  position: absolute;
+  left: 0;
   right: auto; }
 
 /* put your code here */

@@ -124,7 +124,7 @@ export interface TransferProps extends HTMLAttributesWeak {
   locale?: {};
 
   /**
-   * unique id to make component accessible
+   * 请设置 id 以保证transfer的可访问性
    */
   id?: string;
 }

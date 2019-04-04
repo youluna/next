@@ -1,5 +1,5 @@
 /*!
- * @alifd/next@1.14.1 (https://fusion.design)
+ * @alifd/next@1.14.0 (https://fusion.design)
  * Copyright 2018-present Alibaba Group,
  * Licensed under MIT (https://github.com/alibaba-fusion/next/blob/master/LICENSE)
  */
@@ -3617,7 +3617,8 @@ small {
     font-size: 0; }
     .next-tag-large > .next-tag-body {
       font-size: 16px;
-      padding: 0 16px; }
+      padding: 0 16px;
+      min-width: 48px; }
     .next-tag-large.next-tag-closable > .next-tag-body {
       padding: 0 0 0 16px; }
     .next-tag-large[dir=rtl].next-tag-closable > .next-tag-body {
@@ -3641,7 +3642,8 @@ small {
     font-size: 0; }
     .next-tag-medium > .next-tag-body {
       font-size: 14px;
-      padding: 0 12px; }
+      padding: 0 12px;
+      min-width: 40px; }
     .next-tag-medium.next-tag-closable > .next-tag-body {
       padding: 0 0 0 12px; }
     .next-tag-medium[dir=rtl].next-tag-closable > .next-tag-body {
@@ -3675,7 +3677,8 @@ small {
     font-size: 0; }
     .next-tag-small > .next-tag-body {
       font-size: 12px;
-      padding: 0 8px; }
+      padding: 0 8px;
+      min-width: 28px; }
     .next-tag-small.next-tag-closable > .next-tag-body {
       padding: 0 0 0 8px; }
     .next-tag-small[dir=rtl].next-tag-closable > .next-tag-body {
@@ -5679,7 +5682,11 @@ small {
     -webkit-transition: background .2s ease;
     transition: background .2s ease; }
     .next-collapse-panel-title:hover {
-      background: #EBECF0; }
+      background: #EBECF0;
+      color: #333333;
+      font-weight: normal; }
+      .next-collapse-panel-title:hover .next-collapse-panel-icon {
+        color: #333333; }
   .next-collapse-panel-content {
     overflow: hidden;
     height: 0;
@@ -5727,6 +5734,10 @@ small {
       background: #F2F3F7; }
     .next-collapse-panel-disabled .next-collapse-panel-icon {
       color: #CCCCCC; }
+    .next-collapse-panel-disabled .next-collapse-panel-title:hover {
+      font-weight: normal; }
+      .next-collapse-panel-disabled .next-collapse-panel-title:hover .next-collapse-panel-icon {
+        color: #CCCCCC; }
     .next-collapse-panel-disabled:hover {
       color: #CCCCCC;
       background: #F2F3F7; }
@@ -15652,6 +15663,9 @@ small {
               box-sizing: border-box; }
   .next-tabs-bar {
     outline: none; }
+    .next-tabs-bar-popup {
+      overflow-y: auto;
+      max-height: 480px; }
   .next-tabs-nav-container {
     position: relative; }
     .next-tabs-nav-container:after {
@@ -16049,44 +16063,50 @@ small {
           -ms-transform: translateY(-50%);
               transform: translateY(-50%); }
 
-.next-tabs[dir="rtl"].next-medium .next-tabs-nav-container-scrolling {
+.next-tabs[dir='rtl'].next-medium .next-tabs-nav-container-scrolling {
   padding-left: 60px;
   padding-right: 0; }
 
-.next-tabs[dir="rtl"].next-medium .next-tabs-tab-close {
+.next-tabs[dir='rtl'].next-medium .next-tabs-tab-close {
   padding-right: 8px;
   padding-left: 0; }
 
-.next-tabs[dir="rtl"].next-small .next-tabs-nav-container-scrolling {
+.next-tabs[dir='rtl'].next-small .next-tabs-nav-container-scrolling {
   padding-left: 56px;
   padding-right: 0; }
 
-.next-tabs[dir="rtl"].next-small .next-tabs-tab-close {
+.next-tabs[dir='rtl'].next-small .next-tabs-tab-close {
   padding-right: 8px;
   padding-left: 0; }
 
-.next-tabs[dir="rtl"].next-tabs-wrapped.next-tabs-top > .next-tabs-bar .next-tabs-nav-extra {
+.next-tabs[dir='rtl'].next-tabs-wrapped.next-tabs-top > .next-tabs-bar .next-tabs-nav-extra {
   right: auto;
   left: 0; }
 
-.next-tabs[dir="rtl"].next-tabs-wrapped.next-tabs-bottom > .next-tabs-bar .next-tabs-nav-extra {
+.next-tabs[dir='rtl'].next-tabs-wrapped.next-tabs-bottom > .next-tabs-bar .next-tabs-nav-extra {
   right: auto;
   left: 0; }
 
-.next-tabs[dir="rtl"] > .next-tabs-bar .next-tabs-nav-extra {
+.next-tabs[dir='rtl'] > .next-tabs-bar .next-tabs-nav-extra {
   right: auto;
   left: 0; }
 
-.next-tabs[dir="rtl"] .next-tabs-btn-next {
+.next-tabs[dir='rtl'] .next-tabs-btn-next {
   left: 8px;
   right: auto; }
 
-.next-tabs[dir="rtl"] .next-tabs-btn-prev {
+.next-tabs[dir='rtl'] .next-tabs-btn-prev {
   left: 32px;
   right: auto; }
 
-.next-tabs[dir="rtl"] .next-tabs-btn-down {
+.next-tabs[dir='rtl'] .next-tabs-btn-down {
   left: 8px;
+  right: auto; }
+
+.next-tabs-text[dir='rtl'] > .next-tabs-bar .next-tabs-tab:not(:last-child):after {
+  content: ' ';
+  position: absolute;
+  left: 0;
   right: auto; }
 
 /* put your code here */

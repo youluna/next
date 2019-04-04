@@ -1,5 +1,5 @@
 /*!
- * @alifd/next@1.14.1 (https://fusion.design)
+ * @alifd/next@1.14.0 (https://fusion.design)
  * Copyright 2018-present Alibaba Group,
  * Licensed under MIT (https://github.com/alibaba-fusion/next/blob/master/LICENSE)
  */
@@ -19361,7 +19361,7 @@ module.exports = exports['default'];
 
 var next = __webpack_require__(157);
 
-next.version = '1.14.1';
+next.version = '1.14.0';
 
 module.exports = next;
 
@@ -23341,6 +23341,8 @@ function _interopRequireDefault(obj) {
 var noop = _util.func.noop;
 var Popup = _overlay2.default.Popup;
 
+var alignList = ['t', 'r', 'b', 'l', 'tl', 'tr', 'bl', 'br', 'lt', 'lb', 'rt', 'rb'];
+
 var alignMap = _alignMap.normalMap;
 
 /** Balloon */
@@ -23353,7 +23355,7 @@ var Balloon = (_temp = _class = function (_React$Component) {
         var _this = (0, _possibleConstructorReturn3.default)(this, _React$Component.call(this, props, context));
 
         _this.state = {
-            align: props.align,
+            align: alignList.includes(props.align) ? props.align : 'b',
             visible: 'visible' in props ? props.visible : props.defaultVisible
         };
         _this._onClose = _this._onClose.bind(_this);
@@ -23369,7 +23371,7 @@ var Balloon = (_temp = _class = function (_React$Component) {
             });
         }
 
-        if ('align' in nextProps) {
+        if ('align' in nextProps && alignList.includes(nextProps.align)) {
             this.setState({
                 align: nextProps.align
             });
@@ -23569,7 +23571,7 @@ var Balloon = (_temp = _class = function (_React$Component) {
      * 弹出层位置
      * @enumdesc 上, 右, 下, 左, 上左, 上右, 下左, 下右, 左上, 左下, 右上, 右下 及其 两两组合
      */
-    align: _propTypes2.default.oneOf(['t', 'r', 'b', 'l', 'tl', 'tr', 'bl', 'br', 'lt', 'lb', 'rt', 'rb']),
+    align: _propTypes2.default.oneOf(alignList),
     /**
      * 弹层相对于trigger的定位的微调
      */
@@ -30118,6 +30120,7 @@ var AutoComplete = (_temp = _class = function (_Base) {
             onKeyDown = _props.onKeyDown;
 
         if (popupContent) {
+            e.stopPropagation(); //stopPropagation can make use onChange triggerd while typing space('') in Input
             return onKeyDown(e);
         }
 
@@ -30135,7 +30138,7 @@ var AutoComplete = (_temp = _class = function (_Base) {
                 this.chooseHighlightItem(e);
                 break;
             case _util.KEYCODE.SPACE:
-                // 防止 Popup 监听到 space key 触发 onVisibleChange
+                // stopPropagation can make use onChange triggerd while typing space('') in Input
                 e.stopPropagation();
                 break;
             case _util.KEYCODE.ESC:
@@ -44971,7 +44974,7 @@ var Rating = (_temp = _class = function (_Component) {
         }, underlay), _react2.default.createElement('div', {
             className: prefix + 'rating-overlay',
             style: overlayStyle
-        }, _react2.default.createElement('form', { action: '#' }, overlay))), showGrade ? _react2.default.createElement('div', { className: prefix + 'rating-info', style: infoStyle }, readAs(value)) : null);
+        }, overlay)), showGrade ? _react2.default.createElement('div', { className: prefix + 'rating-info', style: infoStyle }, readAs(value)) : null);
     };
 
     return Rating;
@@ -49308,9 +49311,9 @@ var _propTypes = __webpack_require__(5);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _classnames6 = __webpack_require__(6);
+var _classnames4 = __webpack_require__(6);
 
-var _classnames7 = _interopRequireDefault(_classnames6);
+var _classnames5 = _interopRequireDefault(_classnames4);
 
 var _icon = __webpack_require__(10);
 
@@ -49394,14 +49397,7 @@ var Nav = (_temp = _class = function (_React$Component) {
             if (activeTabOffset >= wrapperOffset + wrapperWH || activeTabOffset + activeTabWH <= wrapperOffset) {
                 return;
             }
-            // if (activeTabOffset < wrapperOffset) {
-            //     target += wrapperOffset - activeTabOffset;
-            //     this.setOffset(target);
-            // }
-            if (wrapperOffset + wrapperWH < activeTabOffset + activeTabWH) {
-                target -= activeTabOffset + activeTabWH - (wrapperOffset + wrapperWH);
-                _this.setOffset(target, true, false);
-            }
+            _this.setOffset(target, true, true);
         };
 
         _this.onPrevClick = function () {
@@ -49449,9 +49445,16 @@ var Nav = (_temp = _class = function (_React$Component) {
             _this.activeTab = ref;
         };
 
+        _this.prevBtnHandler = function (ref) {
+            _this.prevBtn = (0, _reactDom.findDOMNode)(ref);
+        };
+
+        _this.nextBtnHandler = function (ref) {
+            _this.nextBtn = (0, _reactDom.findDOMNode)(ref);
+        };
+
         _this.state = {
-            next: false,
-            prev: false,
+            showBtn: false,
             dropdownTabs: []
         };
         _this.offset = 0;
@@ -49463,22 +49466,17 @@ var Nav = (_temp = _class = function (_React$Component) {
 
         ctx.setSlideBtn();
         ctx.getDropdownItems(this.props);
-        // 此处通过延时处理，屏蔽动画带来的定位不准确问题（由于要支持ie9，因此无法使用transitionend）
-        clearTimeout(ctx.scrollTimer);
-        ctx.scrollTimer = setTimeout(function () {
-            ctx.scrollToActiveTab();
-        }, 400);
-
         _util.events.on(window, 'resize', this.onWindowResized);
     };
 
     Nav.prototype.componentDidUpdate = function componentDidUpdate() {
         var ctx = this;
-
-        clearTimeout(ctx.slideTimer);
-        ctx.slideTimer = setTimeout(function () {
-            ctx.setSlideBtn();
-        }, 200);
+        // 此处通过延时处理，屏蔽动画带来的定位不准确问题（由于要支持ie9，因此无法使用transitionend）
+        clearTimeout(ctx.scrollTimer);
+        ctx.scrollTimer = setTimeout(function () {
+            ctx.scrollToActiveTab();
+        }, 410); // transition-duration is set to be .4s, wait for the transition finishes before re-calc
+        ctx.setSlideBtn();
         if (this.activeTab && (0, _reactDom.findDOMNode)(this).contains(document.activeElement)) {
             this.activeTab.focus();
         }
@@ -49498,7 +49496,9 @@ var Nav = (_temp = _class = function (_React$Component) {
     Nav.prototype.setOffset = function setOffset(target) {
         var checkSlideBtn = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
         var setActive = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-        var tabPosition = this.props.tabPosition;
+        var _props = this.props,
+            tabPosition = _props.tabPosition,
+            rtl = _props.rtl;
 
         var navWH = (0, _utils.getOffsetWH)(this.nav, tabPosition);
         var wrapperWH = (0, _utils.getOffsetWH)(this.wrapper);
@@ -49513,13 +49513,7 @@ var Nav = (_temp = _class = function (_React$Component) {
             var activeTabWH = (0, _utils.getOffsetWH)(this.activeTab);
             var activeTabOffset = (0, _utils.getOffsetLT)(this.activeTab) + relativeOffset;
             var wrapperOffset = (0, _utils.getOffsetLT)(this.wrapper);
-
-            if (
-            // active tab partially in visible zone
-            wrapperOffset + wrapperWH < activeTabOffset + activeTabWH && activeTabOffset < wrapperOffset + wrapperWH) {
-                target -= // Move more to make active tab totally in visible zone
-                activeTabOffset + activeTabWH - (wrapperOffset + wrapperWH);
-            }
+            target = this._adjustTarget(wrapperOffset, wrapperWH, activeTabWH, activeTabOffset, rtl, target);
         }
 
         if (this.offset !== target) {
@@ -49569,6 +49563,50 @@ var Nav = (_temp = _class = function (_React$Component) {
         }
     };
 
+    Nav.prototype._adjustTarget = function _adjustTarget(wrapperOffset, wrapperWH, activeTabWH, activeTabOffset, rtl, target) {
+        if (
+        // active tab covers wrapper right edge
+        wrapperOffset + wrapperWH < activeTabOffset + activeTabWH && activeTabOffset < wrapperOffset + wrapperWH) {
+            if (rtl) {
+                target += // Move more to make active tab totally in visible zone
+                activeTabOffset + activeTabWH - (wrapperOffset + wrapperWH);
+            } else {
+                target -= activeTabOffset + activeTabWH - (wrapperOffset + wrapperWH) + 1;
+            }
+
+            return target;
+        }
+        if (
+        // active tab covers wrapper left edge
+        wrapperOffset < activeTabOffset + activeTabWH && activeTabOffset < wrapperOffset) {
+            if (rtl) {
+                target -= wrapperOffset - activeTabOffset + 1;
+            } else {
+                target += wrapperOffset - activeTabOffset;
+            }
+            return target;
+        }
+        return target;
+    };
+
+    Nav.prototype._setBtnStyle = function _setBtnStyle(prev, next) {
+        if (this.prevBtn && this.nextBtn) {
+            var cls = 'disabled';
+            this.prevBtn.disabled = !prev;
+            this.nextBtn.disabled = !next;
+            if (prev) {
+                _util.dom.removeClass(this.prevBtn, cls);
+            } else {
+                _util.dom.addClass(this.prevBtn, cls);
+            }
+            if (next) {
+                _util.dom.removeClass(this.nextBtn, cls);
+            } else {
+                _util.dom.addClass(this.nextBtn, cls);
+            }
+        }
+    };
+
     Nav.prototype.setSlideBtn = function setSlideBtn() {
         var tabPosition = this.props.tabPosition;
 
@@ -49584,7 +49622,6 @@ var Nav = (_temp = _class = function (_React$Component) {
         if (minOffset >= 0 || navWH <= navbarWH) {
             next = false;
             prev = false;
-            this.setOffset(0, false); // no need to check slide again since this call is invoked from inside setSlideBtn
         } else if (this.offset < 0 && this.offset <= minOffset) {
             prev = true;
             next = false;
@@ -49595,12 +49632,12 @@ var Nav = (_temp = _class = function (_React$Component) {
             prev = true;
             next = true;
         }
-
-        if (next !== this.state.next || prev !== this.state.prev) {
+        if ((prev || next) !== this.state.showBtn) {
             this.setState({
-                next: next,
-                prev: prev
+                showBtn: prev || next
             });
+        } else {
+            this._setBtnStyle(prev, next);
         }
     };
 
@@ -49659,7 +49696,7 @@ var Nav = (_temp = _class = function (_React$Component) {
             /*eslint-disable eqeqeq*/
 
             var active = activeKey == child.key;
-            var cls = (0, _classnames7.default)((_classnames = {}, _classnames[prefix + 'tabs-tab'] = true, _classnames.disabled = disabled, _classnames.active = active, _classnames), className);
+            var cls = (0, _classnames5.default)((_classnames = {}, _classnames[prefix + 'tabs-tab'] = true, _classnames.disabled = disabled, _classnames.active = active, _classnames), className);
 
             var events = {};
 
@@ -49714,12 +49751,12 @@ var Nav = (_temp = _class = function (_React$Component) {
             return null;
         }
 
-        var _props = this.props,
-            prefix = _props.prefix,
-            activeKey = _props.activeKey,
-            triggerType = _props.triggerType,
-            popupProps = _props.popupProps,
-            rtl = _props.rtl;
+        var _props2 = this.props,
+            prefix = _props2.prefix,
+            activeKey = _props2.activeKey,
+            triggerType = _props2.triggerType,
+            popupProps = _props2.popupProps,
+            rtl = _props2.rtl;
 
         var trigger = _react2.default.createElement('button', { className: prefix + 'tabs-btn-down' }, _react2.default.createElement(_icon2.default, { type: 'arrow-down' }));
 
@@ -49729,7 +49766,8 @@ var Nav = (_temp = _class = function (_React$Component) {
             trigger: trigger,
             container: function container(target) {
                 return target.parentNode;
-            }
+            },
+            className: prefix + 'tabs-bar-popup'
         }, popupProps), _react2.default.createElement(_menu2.default, {
             rtl: rtl,
             selectedKeys: [activeKey],
@@ -49755,18 +49793,18 @@ var Nav = (_temp = _class = function (_React$Component) {
     };
 
     Nav.prototype.render = function render() {
-        var _classnames4, _classnames5;
+        var _classnames2, _classnames3;
 
-        var _props2 = this.props,
-            prefix = _props2.prefix,
-            tabPosition = _props2.tabPosition,
-            excessMode = _props2.excessMode,
-            extra = _props2.extra,
-            onKeyDown = _props2.onKeyDown,
-            animation = _props2.animation,
-            style = _props2.style,
-            className = _props2.className,
-            rtl = _props2.rtl;
+        var _props3 = this.props,
+            prefix = _props3.prefix,
+            tabPosition = _props3.tabPosition,
+            excessMode = _props3.excessMode,
+            extra = _props3.extra,
+            onKeyDown = _props3.onKeyDown,
+            animation = _props3.animation,
+            style = _props3.style,
+            className = _props3.className,
+            rtl = _props3.rtl;
 
         var state = this.state;
 
@@ -49774,26 +49812,23 @@ var Nav = (_temp = _class = function (_React$Component) {
         var prevButton = void 0;
         var restButton = void 0;
 
-        var showNextPrev = state.prev || state.next;
+        var showNextPrev = state.showBtn;
 
-        if (excessMode === 'dropdown' && state.next && state.dropdownTabs.length) {
+        if (excessMode === 'dropdown' && showNextPrev && state.dropdownTabs.length) {
             restButton = this.renderDropdownTabs(state.dropdownTabs);
             prevButton = null;
             nextButton = null;
         } else if (showNextPrev) {
-            var _classnames2, _classnames3;
-
-            var prevBtnCls = (0, _classnames7.default)((_classnames2 = {}, _classnames2[prefix + 'tabs-btn-prev'] = 1, _classnames2.disabled = !state.prev, _classnames2));
-            var nextBtnCls = (0, _classnames7.default)((_classnames3 = {}, _classnames3[prefix + 'tabs-btn-next'] = 1, _classnames3.disabled = !state.next, _classnames3));
-
             prevButton = _react2.default.createElement('button', {
-                onClick: state.prev ? this.onPrevClick : noop,
-                className: prevBtnCls
+                onClick: this.onPrevClick,
+                className: prefix + 'tabs-btn-prev',
+                ref: this.prevBtnHandler
             }, _react2.default.createElement(_icon2.default, { rtl: rtl, type: 'arrow-left' }));
 
             nextButton = _react2.default.createElement('button', {
-                onClick: state.next ? this.onNextClick : noop,
-                className: nextBtnCls
+                onClick: this.onNextClick,
+                className: prefix + 'tabs-btn-next',
+                ref: this.nextBtnHandler
             }, _react2.default.createElement(_icon2.default, { rtl: rtl, type: 'arrow-right' }));
             restButton = null;
         } else {
@@ -49802,7 +49837,7 @@ var Nav = (_temp = _class = function (_React$Component) {
             restButton = null;
         }
 
-        var containerCls = (0, _classnames7.default)((_classnames4 = {}, _classnames4[prefix + 'tabs-nav-container'] = true, _classnames4[prefix + 'tabs-nav-container-scrolling'] = showNextPrev, _classnames4));
+        var containerCls = (0, _classnames5.default)((_classnames2 = {}, _classnames2[prefix + 'tabs-nav-container'] = true, _classnames2[prefix + 'tabs-nav-container-scrolling'] = showNextPrev, _classnames2));
 
         var navCls = prefix + 'tabs-nav';
         var tabList = this.renderTabList(this.props);
@@ -49839,7 +49874,7 @@ var Nav = (_temp = _class = function (_React$Component) {
             }
         }
 
-        var navbarCls = (0, _classnames7.default)((_classnames5 = {}, _classnames5[prefix + 'tabs-bar'] = true, _classnames5), className);
+        var navbarCls = (0, _classnames5.default)((_classnames3 = {}, _classnames3[prefix + 'tabs-bar'] = true, _classnames3), className);
 
         return _react2.default.createElement('div', {
             className: navbarCls,
@@ -56112,7 +56147,7 @@ var Transfer = (_temp = _class = function (_Component) {
      */
     locale: _propTypes2.default.object,
     /**
-     * unique id to make component accessible
+     * 请设置 id 以保证transfer的可访问性
      */
     id: _propTypes2.default.string
 }, _class.defaultProps = {

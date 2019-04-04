@@ -17,6 +17,8 @@ var noop = func.noop;
 var Popup = Overlay.Popup;
 
 
+var alignList = ['t', 'r', 'b', 'l', 'tl', 'tr', 'bl', 'br', 'lt', 'lb', 'rt', 'rb'];
+
 var alignMap = normalMap;
 
 /** Balloon */
@@ -29,7 +31,7 @@ var Balloon = (_temp = _class = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, _React$Component.call(this, props, context));
 
         _this.state = {
-            align: props.align,
+            align: alignList.includes(props.align) ? props.align : 'b',
             visible: 'visible' in props ? props.visible : props.defaultVisible
         };
         _this._onClose = _this._onClose.bind(_this);
@@ -45,7 +47,7 @@ var Balloon = (_temp = _class = function (_React$Component) {
             });
         }
 
-        if ('align' in nextProps) {
+        if ('align' in nextProps && alignList.includes(nextProps.align)) {
             this.setState({
                 align: nextProps.align
             });
@@ -254,7 +256,7 @@ var Balloon = (_temp = _class = function (_React$Component) {
      * 弹出层位置
      * @enumdesc 上, 右, 下, 左, 上左, 上右, 下左, 下右, 左上, 左下, 右上, 右下 及其 两两组合
      */
-    align: PropTypes.oneOf(['t', 'r', 'b', 'l', 'tl', 'tr', 'bl', 'br', 'lt', 'lb', 'rt', 'rb']),
+    align: PropTypes.oneOf(alignList),
     /**
      * 弹层相对于trigger的定位的微调
      */

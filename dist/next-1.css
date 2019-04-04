@@ -1,5 +1,5 @@
 /*!
- * @alifd/next@1.14.1 (https://fusion.design)
+ * @alifd/next@1.14.0 (https://fusion.design)
  * Copyright 2018-present Alibaba Group,
  * Licensed under MIT (https://github.com/alibaba-fusion/next/blob/master/LICENSE)
  */
@@ -3617,7 +3617,8 @@ small {
     font-size: 0; }
     .next-tag-large > .next-tag-body {
       font-size: 16px;
-      padding: 0 16px; }
+      padding: 0 16px;
+      min-width: 48px; }
     .next-tag-large.next-tag-closable > .next-tag-body {
       padding: 0 0 0 16px; }
     .next-tag-large[dir=rtl].next-tag-closable > .next-tag-body {
@@ -3641,7 +3642,8 @@ small {
     font-size: 0; }
     .next-tag-medium > .next-tag-body {
       font-size: 14px;
-      padding: 0 12px; }
+      padding: 0 12px;
+      min-width: 40px; }
     .next-tag-medium.next-tag-closable > .next-tag-body {
       padding: 0 0 0 12px; }
     .next-tag-medium[dir=rtl].next-tag-closable > .next-tag-body {
@@ -3675,7 +3677,8 @@ small {
     font-size: 0; }
     .next-tag-small > .next-tag-body {
       font-size: 12px;
-      padding: 0 8px; }
+      padding: 0 8px;
+      min-width: 28px; }
     .next-tag-small.next-tag-closable > .next-tag-body {
       padding: 0 0 0 8px; }
     .next-tag-small[dir=rtl].next-tag-closable > .next-tag-body {
@@ -5679,7 +5682,11 @@ small {
     -webkit-transition: background .2s ease;
     transition: background .2s ease; }
     .next-collapse-panel-title:hover {
-      background: #EBECF0; }
+      background: #EBECF0;
+      color: #333333;
+      font-weight: normal; }
+      .next-collapse-panel-title:hover .next-collapse-panel-icon {
+        color: #333333; }
   .next-collapse-panel-content {
     overflow: hidden;
     height: 0;
@@ -5727,6 +5734,10 @@ small {
       background: #F2F3F7; }
     .next-collapse-panel-disabled .next-collapse-panel-icon {
       color: #CCCCCC; }
+    .next-collapse-panel-disabled .next-collapse-panel-title:hover {
+      font-weight: normal; }
+      .next-collapse-panel-disabled .next-collapse-panel-title:hover .next-collapse-panel-icon {
+        color: #CCCCCC; }
     .next-collapse-panel-disabled:hover {
       color: #CCCCCC;
       background: #F2F3F7; }
@@ -12659,9 +12670,3 @@ small {
   .next-rating-underlay .next-icon, .next-rating-overlay .next-icon {
     -webkit-transition: all 50ms ease-in;
     transition: all 50ms ease-in; }
-    .next-rating-underlay .next-icon.hover, .next-rating-overlay .next-icon.hover {
-      -webkit-transform: scale3d(1.1, 1.1, 1.1);
-              transform: scale3d(1.1, 1.1, 1.1); }
-    .next-rating-underlay .next-icon.clicked, .next-rating-overlay .next-icon.clicked {
-      -webkit-transform: scale3d(0.9, 0.9, 0.9);
-              transform: scale3d(0.9, 0.9, 0.9); }
