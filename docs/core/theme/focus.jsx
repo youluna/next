@@ -48,4 +48,4 @@ window.renderDemo = function () {
 
 renderDemo();
 
-initDemo('mask');
+initDemo('focus');

@@ -32,6 +32,11 @@
           "sass": {
             "popup.scss": "lib/core/popup.scss"
           }
+        },
+        "focus": {
+          "sass": {
+            "focus.scss": "lib/core/focus.scss"
+          }
         }
       }
     },
@@ -61,6 +66,7 @@
     "form-element": "lib/core/utility/_form-element.scss",
     "popup": "lib/core/utility/_popup.scss",
     "mask": "lib/core/utility/_mask.scss",
+    "focus": "lib/core/utility/_focus.scss",
     "animate": "lib/animate/scss/variable.scss",
     "badge": "lib/badge/scss/variable.scss",
     "balloon": "lib/balloon/scss/variable.scss",
