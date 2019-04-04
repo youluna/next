@@ -14,6 +14,9 @@ class FocusDemo extends React.Component {
 
         return (
             <div id="focus-demo-container">
+                <div className="next-focus">这里是demo</div>
+                <br />
+                <br />
                 <Input placeholder="请输入" />
                 <br />
                 <br />
