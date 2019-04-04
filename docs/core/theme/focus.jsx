@@ -7,6 +7,8 @@ import '../../../src/nav/style.js';
 
 import '../../../src/core/focus.scss';
 
+import '../../../node_modules/focus-visible/dist/focus-visible.min.js';
+
 const { Item, SubNav } = Nav;
 class FocusDemo extends React.Component {
 
@@ -35,8 +37,6 @@ class FocusDemo extends React.Component {
                         <a href="http://www.taobao.com" target="_blank">Taobao</a>
                     </Item>
                 </Nav>
-
-                <script src="//unpkg.com/focus-visible@4.1.5/dist/focus-visible.min.js"></script>
             </div>
         );
     }

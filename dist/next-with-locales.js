@@ -1,5 +1,5 @@
 /*!
- * @alifd/next@1.14.3 (https://fusion.design)
+ * @alifd/next@1.14.4 (https://fusion.design)
  * Copyright 2018-present Alibaba Group,
  * Licensed under MIT (https://github.com/alibaba-fusion/next/blob/master/LICENSE)
  */
@@ -19361,7 +19361,7 @@ module.exports = exports['default'];
 
 var next = __webpack_require__(157);
 
-next.version = '1.14.3';
+next.version = '1.14.4';
 
 module.exports = next;
 
