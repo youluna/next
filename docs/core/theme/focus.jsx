@@ -14,6 +14,9 @@ class FocusDemo extends React.Component {
 
         return (
             <div id="focus-demo-container">
+                <div>请按Tab键以获得焦点</div>
+                <br />
+                <br />
                 <Input placeholder="请输入" />
                 <br />
                 <br />
@@ -32,6 +35,8 @@ class FocusDemo extends React.Component {
                         <a href="http://www.taobao.com" target="_blank">Taobao</a>
                     </Item>
                 </Nav>
+
+                <script src="//unpkg.com/focus-visible@4.1.5/dist/focus-visible.min.js"></script>
             </div>
         );
     }
