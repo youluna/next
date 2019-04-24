@@ -1,6 +1,6 @@
 # Latest Log 
 
-# [1.15.0](https://github.com/alibaba-fusion/next/compare/1.12.8...1.15.0) (2019-04-23)
+## [1.15.1](https://github.com/alibaba-fusion/next/compare/1.12.8...1.15.1) (2019-04-24)
 
 
 ### Bug Fixes
