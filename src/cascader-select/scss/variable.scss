@@ -11,4 +11,7 @@
 // cascader-select variables
 // --------------------------------------------------
 
-$cascader-select-prefix: ".#{$css-prefix}cascader-select";
+/// unconfigurable
+$cascader-select: "cascader-select";
+
+$cascader-select-prefix: ".#{$css-prefix}#{$cascader-select}";
