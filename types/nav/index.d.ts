@@ -1,42 +1,20 @@
 /// <reference types="react" />
 
 import * as React from 'react';
-import CommonProps from '../util';
+import {
+    MenuProps,
+    SubMenuProps,
+    ItemProps as MenuItemProps,
+    PopupItemProps as MenuPopupItemProps,
+    GroupProps as MenuGroupProps
+} from '../menu';
 
-export interface GroupProps extends React.HTMLAttributes<HTMLElement>, CommonProps {
-    /**
-     * 标签内容
-     */
-    label?: React.ReactNode;
-
-    /**
-     * 导航项和子导航
-     */
-    children?: React.ReactNode;
-
-    /**
-     * 自定义类名
-     */
-    className?: string;
+export interface GroupProps extends React.HTMLAttributes<HTMLElement>, MenuGroupProps {
 }
 
 export class Group extends React.Component<GroupProps, any> {}
 
-export interface ItemProps extends React.HTMLAttributes<HTMLElement>, CommonProps {
-    /**
-     * 是否禁用
-     */
-    disabled?: boolean;
-
-    /**
-     * 帮助文本
-     */
-    helper?: React.ReactNode;
-
-    /**
-     * 导航内容
-     */
-    children?: React.ReactNode;
+export interface ItemProps extends React.HTMLAttributes<HTMLElement>, MenuItemProps {
 
     /**
      * 自定义图标，可以使用 Icon 的 type，也可以使用组件 `<Icon type="icon type" />`
@@ -46,21 +24,7 @@ export interface ItemProps extends React.HTMLAttributes<HTMLElement>, CommonProp
 
 export class Item extends React.Component<ItemProps, any> {}
 
-export interface PopupItemProps extends React.HTMLAttributes<HTMLElement>, CommonProps {
-    /**
-     * 标签内容
-     */
-    label?: React.ReactNode;
-
-    /**
-     * 弹出内容
-     */
-    children?: React.ReactNode;
-
-    /**
-     * 自定义类名
-     */
-    className?: string;
+export interface PopupItemProps extends React.HTMLAttributes<HTMLElement>, MenuPopupItemProps {
 
     /**
      * 自定义图标，可以使用 Icon 的 type, 也可以使用组件 `<Icon type="icon type" />`
@@ -70,64 +34,17 @@ export interface PopupItemProps extends React.HTMLAttributes<HTMLElement>, Commo
 
 export class PopupItem extends React.Component<PopupItemProps, any> {}
 
-export interface SubNavProps extends React.HTMLAttributes<HTMLElement>, CommonProps {
-    /**
-     * 自定义类名
-     */
-    className?: string;
-
+export interface SubNavProps extends React.HTMLAttributes<HTMLElement>, SubMenuProps {
     /**
      * 自定义图标，可以使用 Icon 的 type，也可以使用组件 `<Icon type="your type" />`
      */
     icon?: string | React.ReactNode;
-
-    /**
-     * 标签内容
-     */
-    label?: React.ReactNode;
-
-    /**
-     * 是否可选
-     */
-    selectable?: boolean;
-
-    /**
-     * 导航项和子导航
-     */
-    children?: React.ReactNode;
 }
 
 export class SubNav extends React.Component<SubNavProps, any> {}
-interface HTMLAttributesWeak extends React.HTMLAttributes<HTMLElement> {
-    onSelect?: any;
-}
 
-export interface NavProps extends HTMLAttributesWeak, CommonProps {
-    /**
-     * 导航项和子导航
-     */
-    children?: React.ReactNode;
 
-    /**
-     * 点击菜单项触发的回调函数
-     */
-    onItemClick?: (key: string, item: {}, event: {}) => void;
-
-    /**
-     * 当前打开的子菜单的 key 值
-     */
-    openKeys?: string | Array<any>;
-
-    /**
-     * 初始打开的子菜单的 key 值
-     */
-    defaultOpenKeys?: string | Array<any>;
-
-    /**
-     * 初始展开所有的子导航，只在 mode 设置为 'inline' 以及 openMode 设置为 'multiple' 下生效
-     */
-    defaultOpenAll?: boolean;
-
+export interface NavProps extends MenuProps {
     /**
      * 打开或关闭子菜单触发的回调函数
      */

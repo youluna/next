@@ -2,10 +2,15 @@
 
 import * as React from 'react';
 import CommonProps from '../util';
+import { AutoCompleteProps } from '../select';
 
-interface HTMLAttributesWeak extends React.HTMLAttributes<HTMLElement> {
+interface HTMLAttributesWeak extends React.HTMLAttributes<HTMLElement>, AutoCompleteProps {
     defaultValue?: any;
     onChange?: any;
+    filter?: any;
+    onBlur?: any;
+    onFocus?: any;
+    onKeyDown?: any;
 }
 
 export interface SearchProps extends HTMLAttributesWeak, CommonProps {
