@@ -614,6 +614,7 @@ export default function lock(BaseComponent) {
                 prefix,
                 components,
                 className,
+                lockWidth,
                 ...others
             } = this.props;
             let {
@@ -674,6 +675,7 @@ export default function lock(BaseComponent) {
                         wrapperContent={content}
                         components={components}
                         className={className}
+                        lockWidth={lockWidth}
                     />
                 );
             }

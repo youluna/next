@@ -84,6 +84,7 @@ export default class Body extends React.Component {
             pure,
             expandedIndexSimulate,
             rtl,
+            lockWidth,
             ...others
         } = this.props;
 

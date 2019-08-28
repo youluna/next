@@ -81,6 +81,7 @@ export default class Cell extends React.Component {
             locale,
             expandedIndexSimulate,
             rtl,
+            lockWidth,
             ...others
         } = this.props;
         const tagStyle = { ...style };

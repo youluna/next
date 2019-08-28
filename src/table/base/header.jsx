@@ -65,6 +65,7 @@ export default class Header extends React.Component {
             onResizeChange,
             pure,
             rtl,
+            lockWidth,
             ...others
         } = this.props;
 

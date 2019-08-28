@@ -310,11 +310,11 @@ export interface TableProps extends React.HTMLAttributes<HTMLElement>, CommonPro
      * 是否启用选择模式
      */
     rowSelection?: {
-        getProps?: (record: object, index: number) => void;
+        getProps?: (record: {}, index: number) => void;
         onChange?: (selectedRowKeys: Array<any>, records: Array<any>) => void;
         onSelect?: (
             selected: boolean,
-            record: object,
+            record: {},
             records: Array<any>
         ) => void;
         onSelectAll?: (selected: boolean, records: Array<any>) => void;
@@ -353,11 +353,6 @@ export interface TableProps extends React.HTMLAttributes<HTMLElement>, CommonPro
     useVirtual?: boolean;
 
     /**
-     * 设置行高
-     */
-    rowHeight?: number | (() => void);
-
-    /**
      * 在内容区域滚动的时候触发的函数
      */
     onBodyScroll?: () => void;
@@ -366,6 +361,11 @@ export interface TableProps extends React.HTMLAttributes<HTMLElement>, CommonPro
      * 开启时，getExpandedColProps() / getRowProps() / expandedRowRender() 的第二个参数 index (该行所对应的序列) 将按照01,2,3,4...的顺序返回，否则返回真实index(0,2,4,6... / 1,3,5,7...)
      */
     expandedIndexSimulate?: boolean;
+
+    /**
+     * 锁列情况下，table的总长度
+     */
+    lockWidth?: number | string;
 }
 
 export default class Table extends React.Component<TableProps, any> {

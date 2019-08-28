@@ -39,7 +39,7 @@ export default class FixedBody extends React.Component {
     };
 
     render() {
-        const { className, colGroup, ...others } = this.props;
+        const { className, colGroup, lockWidth, ...others } = this.props;
         const { maxBodyHeight, fixedHeader } = this.context;
         const style = {};
         if (fixedHeader) {
@@ -51,7 +51,7 @@ export default class FixedBody extends React.Component {
                 className={className}
                 onScroll={this.onBodyScroll}
             >
-                <table>
+                <table style={{ width: lockWidth }}>
                     {colGroup}
                     <BodyComponent {...others} colGroup={colGroup} />
                 </table>

@@ -22,11 +22,17 @@ export default class FixedHeader extends React.Component {
     }
 
     render() {
-        const { prefix, className, colGroup, ...others } = this.props;
+        const {
+            prefix,
+            className,
+            colGroup,
+            lockWidth,
+            ...others
+        } = this.props;
         return (
             <div className={className}>
                 <div className={`${prefix}table-header-inner`}>
-                    <table>
+                    <table style={{ width: lockWidth }}>
                         {colGroup}
                         <HeaderComponent {...others} prefix={prefix} />
                     </table>

@@ -197,6 +197,7 @@ export default class Row extends React.Component {
             expandedIndexSimulate,
             rtl,
             wrapper,
+            lockWidth,
             ...others
         } = this.props;
         const cls = classnames({

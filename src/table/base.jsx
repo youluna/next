@@ -262,10 +262,6 @@ export default class Table extends React.Component {
          */
         useVirtual: PropTypes.bool,
         /**
-         * 设置行高
-         */
-        rowHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.func]),
-        /**
          * 在内容区域滚动的时候触发的函数
          */
         onBodyScroll: PropTypes.func,
@@ -273,6 +269,10 @@ export default class Table extends React.Component {
          * 开启时，getExpandedColProps() / rowProps() / expandedRowRender() 的第二个参数 index (该行所对应的序列) 将按照01,2,3,4...的顺序返回，否则返回真实index(0,2,4,6... / 1,3,5,7...)
          */
         expandedIndexSimulate: PropTypes.bool,
+        /**
+         * 锁列情况下，table的总长度
+         */
+        lockWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     };
 
     static defaultProps = {
@@ -507,6 +507,7 @@ export default class Table extends React.Component {
                 pure,
                 rtl,
                 sortIcons,
+                lockWidth,
             } = this.props;
             const { sort } = this.state;
             const {
@@ -540,6 +541,7 @@ export default class Table extends React.Component {
                             onResizeChange={this.onResizeChange}
                             onSort={this.onSort}
                             sortIcons={sortIcons}
+                            lockWidth={lockWidth}
                         />
                     ) : null}
                     <Body
@@ -563,6 +565,7 @@ export default class Table extends React.Component {
                         onRowMouseLeave={onRowMouseLeave}
                         dataSource={dataSource}
                         locale={locale}
+                        lockWidth={lockWidth}
                     />
                     {wrapperContent}
                 </Wrapper>
@@ -647,6 +650,7 @@ export default class Table extends React.Component {
                 columns,
                 sortIcons,
                 loadingComponent: LoadingComponent = Loading,
+                lockWidth,
                 ...others
             } = this.props,
             cls = classnames({

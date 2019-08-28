@@ -39,12 +39,12 @@ class App extends React.Component {
     state = {
         dataSource: [],
         cols: [
-            <Table.Column title="Title" dataIndex="title.name" width={400} key="name1" lock/>,
+            <Table.Column title="Title" dataIndex="title.name" key="name1"/>,
             <Table.ColumnGroup title="abc" key="name-group">
-                <Table.Column title="Title" dataIndex="title.name" width={100} key="name2"/>
-                <Table.Column title="Title" dataIndex="title.name" width={400} key="name3"/>
+                <Table.Column title="Title" dataIndex="title.name" key="name2"/>
+                <Table.Column title="Title" dataIndex="title.name" key="name3"/>
             </Table.ColumnGroup>,
-            <Table.Column title="Time" dataIndex="time" width={500} key="time"/>
+            <Table.Column title="Time" dataIndex="time" key="time"/>
         ],
         loading: true
     }
@@ -66,7 +66,7 @@ class App extends React.Component {
         return (
             <div>
                 <p><Button onClick={this.reduceCol}>Reduce Cols</Button></p>
-                <Table dataSource={this.state.dataSource} onRowClick={onRowClick} fixedHeader loading={this.state.loading}>
+                <Table lockWidth={1200} dataSource={this.state.dataSource} onRowClick={onRowClick} fixedHeader loading={this.state.loading}>
                     <Table.Column title="Id-Id-Id-Id-Id-Id-Id-Id-Id-Id-Id-Id" dataIndex="id" lock width={140}/>
                     {this.state.cols}
                     <Table.Column cell={render} width={200}/>
