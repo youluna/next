@@ -1,0 +1,14 @@
+////
+/// @module notification: 通知消息
+/// @tag Notification
+/// @category component
+/// @family component
+/// @varPrefix $notification-
+/// @classPrefix {prefix}-notification
+////
+
+// notification variables
+// --------------------------------------------------
+
+// unconfigurable
+$notification-prefix: ".#{$css-prefix}notification";
